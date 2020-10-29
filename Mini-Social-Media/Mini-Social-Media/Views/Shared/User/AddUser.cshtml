@@ -1,0 +1,35 @@
+﻿@model Mini_Social_Media.Models.UserAddModel
+
+@{
+    ViewData["Title"] = "User management";
+}
+<body>
+</body>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>User Managemnet</title>
+</head>
+<body>
+<div>
+    <body>
+      <div class="card-body">
+          @using (Html.BeginForm("Add", "User", FormMethod.Post))
+          {
+              @Html.AntiForgeryToken()
+              <div class="form-group">
+                  @Html.LabelFor(u => u.Login)
+                  @Html.TextBoxFor(u => u.Login, "", new { @class = "form-control", @placeholder = "Login" })
+      
+              </div>
+              <div class="form-group">
+                  <input type="submit" name="submit" class="btn btn-primary" value="Add"/>
+              </div>
+          }
+      </div>
+      </body>
+</div>
+</body>
+</html>
