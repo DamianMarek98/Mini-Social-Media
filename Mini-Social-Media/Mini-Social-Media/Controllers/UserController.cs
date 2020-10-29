@@ -16,14 +16,14 @@ namespace Mini_Social_Media.Controllers
             _dataService = dataService;
         }
 
-        public IActionResult UserAdd()
+        public IActionResult Add()
         {
             var userAddModel = new UserAddModel();
-            return View("User/AddUser");
+            return View("AddUser");
         }
 
         [HttpPost]
-        public IActionResult Add(UserAddModel userAddModel)
+        public IActionResult AddUser(UserAddModel userAddModel)
         {
             if (ModelState.IsValid)
             {
@@ -31,21 +31,27 @@ namespace Mini_Social_Media.Controllers
                 if (_dataService.CheckIfIdIsNotTaken(userAddModel.Login))
                 {
                     _dataService.Add(userModel);
-                } //todo komunikat
+                } 
             }
 
-            return View("User/UserList", _dataService.Records);
+            return View("UserList", _dataService.Records);
         }
 
         public IActionResult List()
         {
-            return View("User/UserList", _dataService.Records);
+            return View("UserList", _dataService.Records);
         }
 
-        public IActionResult Delete(string login)
+        public IActionResult Del(string login)
         {
             _dataService.Remove(_dataService.Find(login));
-            return View("User/UserList", _dataService.Records);
+            return View("UserList", _dataService.Records);
+        }
+        
+        public IActionResult Init()
+        {
+            _dataService.InitData();
+            return View("UserList", _dataService.Records);
         }
     }
 }

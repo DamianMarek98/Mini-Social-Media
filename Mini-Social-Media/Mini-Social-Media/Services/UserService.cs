@@ -12,7 +12,7 @@ namespace Mini_Social_Media.Services
 
         public UserService()
         {
-            InitData();
+            Records = new List<UserModel>();
         }
 
         public void InitData()

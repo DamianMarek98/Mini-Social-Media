@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Users</title>
-    
+
     <div class="row">
         <div class="col-12">
             <table class="table table-sm table-striped table-hover border-bottom">
@@ -25,12 +25,13 @@
                     <tr>
                         <td>@u.Login</td>
                         <td>@u.CreationTime</td>
-                        <td>@Html.ActionLink("delete", "Delete", "User", new { login = u.Login })</td>
+                        <td>@Html.ActionLink("delete", "Del", "User", new { login = u.Login })</td>
                     </tr>
                 }
             </table>
         </div>
-        @Html.ActionLink("Add new user", "UserAdd", "User")
+        @Html.ActionLink("Add new user", "Add", "User") <br/>
+        @Html.ActionLink("Initialize users", "Init", "User")
     </div>
 </head>
 <body>

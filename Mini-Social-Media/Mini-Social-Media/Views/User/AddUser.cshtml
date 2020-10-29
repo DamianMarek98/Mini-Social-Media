@@ -3,20 +3,18 @@
 @{
     ViewData["Title"] = "User management";
 }
-<body>
-</body>
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>User Managemnet</title>
+    <title>Add user</title>
 </head>
 <body>
 <div>
     <body>
       <div class="card-body">
-          @using (Html.BeginForm("Add", "User", FormMethod.Post))
+          @using (Html.BeginForm("AddUser", "User", FormMethod.Post))
           {
               @Html.AntiForgeryToken()
               <div class="form-group">
