@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,10 +31,17 @@ namespace Mini_Social_Media
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IDataService<UserModel>, UserService>();
-            services.AddControllersWithViews();
+            services.AddSingleton<UserService>();
+            services.AddSingleton<AuthService>();
+            services.AddHttpContextAccessor();
+            services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddRazorPages();
             services.AddDistributedMemoryCache();
+            services.AddLocalization();
+            services.AddMvc()
+                .AddDataAnnotationsLocalization()
+                .AddViewLocalization(options
+                    => options.ResourcesPath = "Resources");
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
@@ -68,6 +77,16 @@ namespace Mini_Social_Media
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
+            var supportedCultures = new[] { new
+                CultureInfo("pl-PL"), new CultureInfo("pl"), new
+                CultureInfo("en-US"), new CultureInfo("en") };
+            app.UseRequestLocalization(new RequestLocalizationOptions {
+                DefaultRequestCulture = new RequestCulture("pl"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
 
             app.UseEndpoints(endpoints =>
             {

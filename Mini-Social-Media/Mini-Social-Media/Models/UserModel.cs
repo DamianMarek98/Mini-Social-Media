@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Mini_Social_Media.Models
 {
@@ -13,6 +15,9 @@ namespace Mini_Social_Media.Models
         [Display(Name = "Creation time")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy hh:mm tt}")]
         public DateTime CreationTime { get; set; }
+
+        [JsonIgnore] 
+        [IgnoreDataMember]
         public List<UserModel> Friends { get; set; }
 
         public UserModel(string login, DateTime creationTime)
@@ -26,5 +31,6 @@ namespace Mini_Social_Media.Models
         {
             Friends.Add(userModel);
         }
+        
     }
 }

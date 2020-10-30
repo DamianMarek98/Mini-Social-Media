@@ -1,0 +1,65 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Mini_Social_Media.Resources
+@inject IViewLocalizer Localizer
+
+@model List<UserModel>
+
+@{
+    ViewData["Title"] = "User friends";
+}
+
+<html>
+<head>
+    <title>@UserFriends.title</title>
+
+    <div class="row">
+        <h2>@UserFriends.title:</h2>
+        <div class="col-12">
+            <table class="table table-sm table-striped table-hover border-bottom">
+                <tr>
+                    <th>@UserFriends.header_login</th>
+                    <th>@UserFriends.header_creation_time</th>
+                    <th>@UserFriends.header_actions</th>
+                </tr>
+                @foreach (var u in Model)
+                {
+                    <tr>
+                        <td>@u.Login</td>
+                        <td>@u.CreationTime</td>
+                        <td>@Html.ActionLink(UserFriends.remove_friend, "DelUserFromRow", "User", new {login = u.Login})</td>
+                    </tr>
+                }
+            </table>
+            <br>
+            <div class="card-body">
+                @using (Html.BeginForm("AddFriendForm", "User"))
+                {
+                    <div class="form-group">
+                        <label for="txtLogin">@UserFriends.label_add_friend</label>
+                        <input class="form-control" type="text" id="txtLogin" name="login"/>
+                        <input type="submit" name="submit" class="btn btn-primary" value="@UserFriends.button_add_friend"/>
+                    </div>
+                }
+            </div>
+            <div class="col-12">
+                <table>
+                    <tr>
+                        <th>@UserFriends.header_actions:</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink(UserFriends.action_export, "friendsExport", "User")</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink(UserFriends.action_import, "friendsImport", "User")</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</head>
+<body>
+<div>
+
+</div>
+</body>
+</html>

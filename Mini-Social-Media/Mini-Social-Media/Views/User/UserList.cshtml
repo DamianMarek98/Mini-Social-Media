@@ -13,6 +13,7 @@
     <title>Users</title>
 
     <div class="row">
+        <h2>Users:</h2>
         <div class="col-12">
             <table class="table table-sm table-striped table-hover border-bottom">
                 <tr>
@@ -25,18 +26,30 @@
                     <tr>
                         <td>@u.Login</td>
                         <td>@u.CreationTime</td>
-                        <td>@Html.ActionLink("delete", "Del", "User", new { login = u.Login })</td>
+                        <td>@Html.ActionLink("delete", "Del", "User", new {login = u.Login})</td>
                     </tr>
                 }
             </table>
         </div>
-        @Html.ActionLink("Add new user", "Add", "User") <br/>
-        @Html.ActionLink("Initialize users", "Init", "User")
+        <br>
+        <div class="col-12">
+            <table>
+                <tr>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>@Html.ActionLink("Add new user", "Add", "User")</td>
+                </tr>
+                <tr>
+                    <td>@Html.ActionLink("Initialize users", "Init", "User")</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </head>
 <body>
 <div>
-      
+
 </div>
 </body>
 </html>

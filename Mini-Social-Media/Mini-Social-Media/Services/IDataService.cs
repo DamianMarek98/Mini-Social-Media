@@ -25,10 +25,15 @@ namespace Mini_Social_Media.Services
         }
 
         public T Find(string id);
-
+        
         public bool CheckIfIdIsNotTaken(string id)
         {
             return Find(id) == null;
+        }
+
+        public bool CheckIfIdExists(string id)
+        {
+            return Find(id) != null;
         }
     }
 }

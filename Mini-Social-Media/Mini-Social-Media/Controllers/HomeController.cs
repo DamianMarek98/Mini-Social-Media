@@ -13,9 +13,9 @@ namespace Mini_Social_Media.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IDataService<UserModel> _dataService;
+        private readonly UserService _dataService;
         
-        public HomeController(ILogger<HomeController> logger, IDataService<UserModel> dataService)
+        public HomeController(ILogger<HomeController> logger, UserService dataService)
         {
             _logger = logger;
             _dataService = dataService;
