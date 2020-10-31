@@ -33,5 +33,11 @@ namespace Mini_Social_Media.Controllers
             return View("Index");
         }
         
+        public IActionResult Status(int code) { 
+            ViewBag.code = code; 
+            ErrorViewModel errorViewModel = new ErrorViewModel();
+            errorViewModel.RequestId = code.ToString();
+            return View("Error", errorViewModel); 
+        }
     }
 }
