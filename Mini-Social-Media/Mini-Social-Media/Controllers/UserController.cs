@@ -68,6 +68,7 @@ namespace Mini_Social_Media.Controllers
             }
         }
 
+        [Route("/user/del/{login}")]
         public IActionResult Del(string login)
         {
             if (_authService.isAdminLogged())
