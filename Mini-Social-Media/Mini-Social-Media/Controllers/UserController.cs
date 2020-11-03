@@ -161,7 +161,7 @@ namespace Mini_Social_Media.Controllers
             {
                 _userService.writeFriendsToFile(_authService.getUserLoggedLogin());
                 byte[] fileBytes = System.IO.File.ReadAllBytes(
-                    @"C:\Users\zmddd\Desktop\Studia\Semestr VII\RAI\Mini-Social-Media\Mini-Social-Media\Mini-Social-Media\Resources\Friends.txt");
+                    Path.GetFullPath(@"Resources") + @"\Friends.txt");
                 string fileName = _authService.getUserLoggedLogin() + "_Friends.txt";
                 return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
             }

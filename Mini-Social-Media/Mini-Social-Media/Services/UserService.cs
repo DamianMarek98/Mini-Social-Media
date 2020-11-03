@@ -91,7 +91,7 @@ namespace Mini_Social_Media.Services
         public void writeFriendsToFile(string login)
         {
             string[] lines = Find(login).Friends.Select(u => u.Login).ToArray();
-            System.IO.File.WriteAllLines(@"C:\Users\zmddd\Desktop\Studia\Semestr VII\RAI\Mini-Social-Media\Mini-Social-Media\Mini-Social-Media\Resources\Friends.txt", lines);
+            System.IO.File.WriteAllLines(Path.GetFullPath(@"Resources") + @"\Friends.txt", lines);
         }
 
         public void loadFriendsFromFile(string login)
@@ -100,7 +100,7 @@ namespace Mini_Social_Media.Services
             if (user != null)
             {
                 foreach (string line in File.ReadLines(
-                    @"C:\Users\zmddd\Desktop\Studia\Semestr VII\RAI\Mini-Social-Media\Mini-Social-Media\Mini-Social-Media\Resources\NewFriends.txt"))
+                    Path.GetFullPath(@"Resources") + @"\NewFriends.txt"))
                 {
                     UserModel friend = Find(line);
                     if (friend != null && !user.Friends.Contains(friend))
